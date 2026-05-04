@@ -1,1 +1,1004 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Esmoriz Viva · Barrinha Sustentável</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
+  :root {
+    --verde: #2d5a27;
+    --verde-claro: #5a8f52;
+    --verde-agua: #4a8c7a;
+    --areia: #e8dcc8;
+    --areia-escura: #c4b49a;
+    --creme: #f5f0e8;
+    --castanho: #6b4c2a;
+    --texto: #1a1a18;
+    --cinza: #6b6b60;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--creme);
+    color: var(--texto);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 1.2rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(245, 240, 232, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(45, 90, 39, 0.15);
+  }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--verde);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+
+  .nav-logo span { font-style: italic; color: var(--verde-agua); }
+
+  nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  nav a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--cinza);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--verde); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 40%, rgba(74,140,122,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 20% 70%, rgba(45,90,39,0.12) 0%, transparent 50%),
+      var(--creme);
+  }
+
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(45deg, rgba(45,90,39,0.03) 0px, rgba(45,90,39,0.03) 1px, transparent 1px, transparent 40px),
+      repeating-linear-gradient(-45deg, rgba(45,90,39,0.03) 0px, rgba(45,90,39,0.03) 1px, transparent 1px, transparent 40px);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8rem 3rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    background: var(--verde);
+    color: var(--areia);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.4rem 1rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    line-height: 1.05;
+    color: var(--texto);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--verde);
+  }
+
+  .hero-lead {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--cinza);
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--verde);
+    color: var(--creme);
+    padding: 0.9rem 2.2rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: background 0.25s, transform 0.2s;
+    margin-right: 1rem;
+  }
+
+  .btn-primary:hover { background: var(--verde-claro); transform: translateY(-2px); }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1.5px solid var(--verde);
+    color: var(--verde);
+    padding: 0.85rem 2.2rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: all 0.25s;
+  }
+
+  .btn-outline:hover { background: var(--verde); color: var(--creme); }
+
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lagoa-svg {
+    width: 100%;
+    max-width: 480px;
+    animation: floatY 6s ease-in-out infinite;
+  }
+
+  @keyframes floatY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--verde);
+    padding: 2.5rem 3rem;
+  }
+
+  .stats-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--areia);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    color: rgba(232, 220, 200, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+  }
+
+  /* SECTION BASE */
+  section { padding: 6rem 3rem; }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-tag {
+    display: inline-block;
+    border: 1px solid var(--verde-agua);
+    color: var(--verde-agua);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    color: var(--texto);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--verde); }
+
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--cinza);
+    line-height: 1.7;
+    max-width: 560px;
+    font-weight: 300;
+    margin-bottom: 3rem;
+  }
+
+  /* SOBRE A BARRINHA */
+  #barrinha { background: white; }
+
+  .barrinha-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .barrinha-ilustracao {
+    position: relative;
+  }
+
+  .feature-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .feature-card {
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+    padding: 1.4rem;
+    background: var(--creme);
+    border-radius: 6px;
+    border-left: 3px solid var(--verde-agua);
+    transition: transform 0.2s;
+  }
+
+  .feature-card:hover { transform: translateX(4px); }
+
+  .fc-icon {
+    width: 42px;
+    height: 42px;
+    background: var(--verde);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .fc-icon svg { width: 22px; height: 22px; fill: var(--areia); }
+
+  .fc-title {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--texto);
+    margin-bottom: 0.3rem;
+  }
+
+  .fc-desc {
+    font-size: 0.87rem;
+    color: var(--cinza);
+    line-height: 1.55;
+  }
+
+  /* RESTAURANTES */
+  #restaurantes { background: var(--creme); }
+
+  .rest-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    gap: 2rem;
+  }
+
+  .rest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .rest-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+
+  .rest-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(45,90,39,0.12);
+  }
+
+  .rest-img {
+    height: 200px;
+    background: var(--verde);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rest-img svg { width: 80px; height: 80px; opacity: 0.3; }
+
+  .rest-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--areia);
+    color: var(--verde);
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 2px;
+  }
+
+  .rest-body { padding: 1.4rem; }
+
+  .rest-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--texto);
+    margin-bottom: 0.4rem;
+  }
+
+  .rest-tipo {
+    font-size: 0.8rem;
+    color: var(--verde-agua);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+
+  .rest-desc {
+    font-size: 0.875rem;
+    color: var(--cinza);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .rest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .tag {
+    background: var(--creme);
+    color: var(--verde);
+    font-size: 0.72rem;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+    border: 1px solid rgba(45,90,39,0.2);
+    font-weight: 500;
+  }
+
+  /* INICIATIVAS */
+  #iniciativas { background: var(--verde); }
+
+  #iniciativas .section-tag {
+    border-color: var(--areia);
+    color: var(--areia);
+  }
+
+  #iniciativas .section-title { color: var(--areia); }
+  #iniciativas .section-title em { color: #9fd498; }
+  #iniciativas .section-lead { color: rgba(232, 220, 200, 0.75); }
+
+  .iniciativas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .iniciativa-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: background 0.25s;
+  }
+
+  .iniciativa-card:hover { background: rgba(255,255,255,0.12); }
+
+  .ini-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    color: rgba(232,220,200,0.2);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .ini-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--areia);
+    margin-bottom: 0.7rem;
+  }
+
+  .ini-desc {
+    font-size: 0.87rem;
+    color: rgba(232, 220, 200, 0.65);
+    line-height: 1.65;
+  }
+
+  /* MANIFESTO */
+  #manifesto {
+    background: white;
+    text-align: center;
+  }
+
+  .manifesto-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 0;
+  }
+
+  .manifesto-inner .section-title { font-size: 2.5rem; margin-bottom: 1.5rem; }
+
+  .manifesto-cita {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--verde);
+    line-height: 1.5;
+    margin: 2rem 0;
+    padding: 1.5rem 2rem;
+    border-left: 4px solid var(--verde-agua);
+    text-align: left;
+    background: var(--creme);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .newsletter-box {
+    margin-top: 3rem;
+    display: flex;
+    gap: 0.75rem;
+    max-width: 480px;
+    margin: 3rem auto 0;
+  }
+
+  .newsletter-box input {
+    flex: 1;
+    padding: 0.9rem 1.2rem;
+    border: 1.5px solid var(--areia-escura);
+    border-radius: 3px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    background: var(--creme);
+    color: var(--texto);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .newsletter-box input:focus { border-color: var(--verde); }
+
+  /* FOOTER */
+  footer {
+    background: var(--texto);
+    padding: 3.5rem 3rem 2rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 2rem;
+  }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--areia);
+    margin-bottom: 0.8rem;
+  }
+
+  .footer-logo em { font-style: italic; color: #9fd498; }
+
+  .footer-tagline {
+    font-size: 0.87rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.4);
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+
+  .footer-col ul { list-style: none; }
+
+  .footer-col li {
+    margin-bottom: 0.6rem;
+    font-size: 0.87rem;
+  }
+
+  .footer-col a {
+    color: rgba(255,255,255,0.4);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: var(--areia); }
+
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.78rem;
+  }
+
+  /* ANIMATIONS */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-content { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .barrinha-grid { grid-template-columns: 1fr; }
+    .rest-grid { grid-template-columns: 1fr 1fr; }
+    .iniciativas-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    nav ul { display: none; }
+    .rest-grid { grid-template-columns: 1fr; }
+    section { padding: 4rem 1.5rem; }
+    nav { padding: 1rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Esmoriz <span>Viva</span></a>
+  <ul>
+    <li><a href="#barrinha">A Barrinha</a></li>
+    <li><a href="#restaurantes">Restaurantes</a></li>
+    <li><a href="#iniciativas">Iniciativas</a></li>
+    <li><a href="#manifesto">Envolver-me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-tag">Desenvolvimento Sustentável · Esmoriz</div>
+      <h1>Preservar a <em>Barrinha</em>, nutrir a comunidade</h1>
+      <p class="hero-lead">Um projeto que une a riqueza natural da Lagoa de Esmoriz com a gastronomia local, criando um ecossistema sustentável para as gerações futuras.</p>
+      <a href="#restaurantes" class="btn-primary">Descobrir Restaurantes</a>
+      <a href="#iniciativas" class="btn-outline">O Projeto</a>
+    </div>
+    <div class="hero-visual">
+      <svg class="lagoa-svg" viewBox="0 0 480 440" xmlns="http://www.w3.org/2000/svg">
+        <!-- sky -->
+        <ellipse cx="240" cy="100" rx="220" ry="90" fill="#d4e8d0" opacity="0.4"/>
+        <!-- water -->
+        <ellipse cx="240" cy="280" rx="200" ry="90" fill="#4a8c7a" opacity="0.25"/>
+        <ellipse cx="240" cy="290" rx="180" ry="75" fill="#4a8c7a" opacity="0.3"/>
+        <ellipse cx="240" cy="300" rx="155" ry="60" fill="#4a8c7a" opacity="0.4"/>
+        <!-- reeds left -->
+        <line x1="60" y1="340" x2="55" y2="200" stroke="#2d5a27" stroke-width="3"/>
+        <line x1="75" y1="340" x2="78" y2="195" stroke="#2d5a27" stroke-width="3"/>
+        <line x1="90" y1="340" x2="86" y2="210" stroke="#2d5a27" stroke-width="2.5"/>
+        <ellipse cx="55" cy="195" rx="5" ry="14" fill="#5a8f52"/>
+        <ellipse cx="78" cy="190" rx="5" ry="14" fill="#5a8f52"/>
+        <ellipse cx="86" cy="205" rx="4" ry="12" fill="#5a8f52"/>
+        <!-- reeds right -->
+        <line x1="400" y1="340" x2="405" y2="200" stroke="#2d5a27" stroke-width="3"/>
+        <line x1="415" y1="340" x2="412" y2="195" stroke="#2d5a27" stroke-width="3"/>
+        <line x1="430" y1="340" x2="428" y2="212" stroke="#2d5a27" stroke-width="2.5"/>
+        <ellipse cx="405" cy="195" rx="5" ry="14" fill="#5a8f52"/>
+        <ellipse cx="412" cy="190" rx="5" ry="14" fill="#5a8f52"/>
+        <ellipse cx="428" cy="207" rx="4" ry="12" fill="#5a8f52"/>
+        <!-- birds -->
+        <path d="M180 130 Q195 118 210 130" stroke="#2d5a27" stroke-width="2" fill="none"/>
+        <path d="M220 110 Q235 98 250 110" stroke="#2d5a27" stroke-width="2" fill="none"/>
+        <path d="M270 125 Q282 115 294 125" stroke="#2d5a27" stroke-width="1.5" fill="none"/>
+        <!-- trees -->
+        <circle cx="130" cy="220" r="38" fill="#5a8f52" opacity="0.8"/>
+        <circle cx="130" cy="210" r="30" fill="#2d5a27" opacity="0.6"/>
+        <rect x="125" y="250" width="10" height="45" fill="#6b4c2a"/>
+        <circle cx="350" cy="225" r="35" fill="#5a8f52" opacity="0.8"/>
+        <circle cx="350" cy="215" r="28" fill="#2d5a27" opacity="0.6"/>
+        <rect x="345" y="252" width="10" height="43" fill="#6b4c2a"/>
+        <!-- ground -->
+        <ellipse cx="240" cy="370" rx="230" ry="30" fill="#c4b49a" opacity="0.5"/>
+        <!-- sun reflection on water -->
+        <ellipse cx="240" cy="295" rx="40" ry="10" fill="white" opacity="0.15"/>
+        <!-- ripples -->
+        <ellipse cx="200" cy="310" rx="25" ry="5" fill="none" stroke="#4a8c7a" stroke-width="1.2" opacity="0.5"/>
+        <ellipse cx="280" cy="320" rx="20" ry="4" fill="none" stroke="#4a8c7a" stroke-width="1" opacity="0.4"/>
+        <!-- fish/duck -->
+        <ellipse cx="210" cy="285" rx="12" ry="6" fill="#2d5a27" opacity="0.5"/>
+        <circle cx="223" cy="283" r="4" fill="#2d5a27" opacity="0.5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num">92ha</div>
+      <div class="stat-label">Área da Lagoa</div>
+    </div>
+    <div>
+      <div class="stat-num">180+</div>
+      <div class="stat-label">Espécies de Aves</div>
+    </div>
+    <div>
+      <div class="stat-num">12</div>
+      <div class="stat-label">Restaurantes Parceiros</div>
+    </div>
+    <div>
+      <div class="stat-num">2050</div>
+      <div class="stat-label">Meta de Impacto Zero</div>
+    </div>
+  </div>
+</div>
+
+<!-- SOBRE A BARRINHA -->
+<section id="barrinha">
+  <div class="section-inner">
+    <div class="barrinha-grid">
+      <div class="fade-up">
+        <div class="section-tag">Reserva Natural</div>
+        <h2 class="section-title">A <em>Barrinha de Esmoriz</em>, um tesouro à beira-mar</h2>
+        <p class="section-lead">A Lagoa de Esmoriz — conhecida como a Barrinha — é um ecossistema único de águas salobras, berçário de biodiversidade e coração da identidade local.</p>
+      </div>
+      <div class="feature-cards fade-up">
+        <div class="feature-card">
+          <div class="fc-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93V18c0-.55-.45-1-1-1H8v-2c0-.55-.45-1-1-1H5.07C5.57 9.19 8.38 7 12 7c2.76 0 5.2 1.12 7 2.93L17 11h-2c-.55 0-1 .45-1 1v2h-2c-.55 0-1 .45-1 1v2.93z"/></svg>
+          </div>
+          <div>
+            <div class="fc-title">Biodiversidade Única</div>
+            <div class="fc-desc">Habitat de mais de 180 espécies de aves, peixes e fauna aquática. Um santuário natural de importância nacional.</div>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 8C8 10 5.9 16.17 3.82 19.82 4.8 18.2 7.14 17 9 17c3 0 3 2 6 2 2.5 0 4.5-1 5-3.5C20.5 13 18 10 17 8zM3 2C3.96 5.59 5.57 8.42 7.84 10.54 6.64 9 6 7 6 5c2.5 2 4 4 4 7 1-1 1.5-2.5 1.5-4.5C12 5 11 3 3 2z"/></svg>
+          </div>
+          <div>
+            <div class="fc-title">Ecossistema Salobro</div>
+            <div class="fc-desc">A confluência entre água doce e salgada cria condições únicas para espécies raras e pesca artesanal sustentável.</div>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 3L2 12h3v8h6v-5h2v5h6v-8h3L12 3zm0 12.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+          </div>
+          <div>
+            <div class="fc-title">Identidade da Comunidade</div>
+            <div class="fc-desc">A Barrinha é o centro da vida cultural e económica de Esmoriz, ligando pescadores, restaurantes e visitantes há séculos.</div>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="fc-icon">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 17.93V18c0-.55-.45-1-1-1s-1 .45-1 1v1.93C7.06 19.44 4.56 16.94 4.07 13H6c.55 0 1-.45 1-1s-.45-1-1-1H4.07C4.56 7.06 7.06 4.56 11 4.07V6c0 .55.45 1 1 1s1-.45 1-1V4.07c3.94.49 6.44 2.99 6.93 6.93H18c-.55 0-1 .45-1 1s.45 1 1 1h1.93c-.49 3.94-2.99 6.44-6.93 6.93z"/></svg>
+          </div>
+          <div>
+            <div class="fc-title">Proteção e Futuro</div>
+            <div class="fc-desc">Classificada como Zona de Proteção Especial, trabalhamos para garantir que as próximas gerações herdem este patrimônio.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESTAURANTES -->
+<section id="restaurantes">
+  <div class="section-inner">
+    <div class="rest-header">
+      <div class="fade-up">
+        <div class="section-tag">Parceiros Locais</div>
+        <h2 class="section-title">Comer bem, <em>pensar verde</em></h2>
+        <p class="section-lead">Restaurantes que partilham a nossa missão: ingredientes locais, desperdício zero, sabor autêntico.</p>
+      </div>
+    </div>
+    <div class="rest-grid">
+
+      <div class="rest-card fade-up">
+        <div class="rest-img" style="background: linear-gradient(135deg, #1a4a3a, #2d7a5e);">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 15 C25 15 15 30 15 40 C15 55 30 65 40 65 C50 65 65 55 65 40 C65 30 55 15 40 15Z" fill="white"/>
+            <path d="M30 40 C32 35 38 32 40 40 C42 32 48 35 50 40" stroke="#1a4a3a" stroke-width="3" fill="none"/>
+          </svg>
+          <div class="rest-badge">Peixe Fresco</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-tipo">Marisqueira · Peixe</div>
+          <div class="rest-name">Mar da Barrinha</div>
+          <div class="rest-desc">Especialidades de peixe e marisco da lagoa, servidos com legumes da horta comunitária local. Zero quilómetros no prato.</div>
+          <div class="rest-tags">
+            <span class="tag">Produto Local</span>
+            <span class="tag">Sem Desperdício</span>
+            <span class="tag">Vegan disponível</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rest-card fade-up">
+        <div class="rest-img" style="background: linear-gradient(135deg, #4a3a1a, #8a6a30);">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="25" width="40" height="30" rx="6" fill="white"/>
+            <rect x="28" y="20" width="8" height="8" rx="2" fill="white"/>
+            <rect x="44" y="20" width="8" height="8" rx="2" fill="white"/>
+            <line x1="20" y1="38" x2="60" y2="38" stroke="#4a3a1a" stroke-width="2"/>
+          </svg>
+          <div class="rest-badge">Petiscos</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-tipo">Taberna · Petiscos</div>
+          <div class="rest-name">Taberna da Lagoa</div>
+          <div class="rest-desc">Petiscos tradicionais da região com ingredientes sazonais, vinhos naturais e embalagens 100% biodegradáveis.</div>
+          <div class="rest-tags">
+            <span class="tag">Sazonalidade</span>
+            <span class="tag">Vinho Natural</span>
+            <span class="tag">Embalagem Bio</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rest-card fade-up">
+        <div class="rest-img" style="background: linear-gradient(135deg, #2a4a1a, #4a8a2e);">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="40" cy="45" rx="22" ry="16" fill="white"/>
+            <path d="M25 30 Q40 15 55 30" stroke="white" stroke-width="3" fill="none"/>
+            <circle cx="40" cy="28" r="4" fill="white"/>
+          </svg>
+          <div class="rest-badge">Vegetariano</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-tipo">Café · Vegetariano</div>
+          <div class="rest-name">Raízes Café</div>
+          <div class="rest-desc">Brunch e almoços vegetarianos com produtos de agricultores da região. Espaço solar, energia renovável, carta sazonal.</div>
+          <div class="rest-tags">
+            <span class="tag">Vegetariano</span>
+            <span class="tag">Energia Solar</span>
+            <span class="tag">Brunch</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rest-card fade-up">
+        <div class="rest-img" style="background: linear-gradient(135deg, #1a2a4a, #2a5a8a);">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 50 Q40 25 65 50" fill="white"/>
+            <rect x="30" y="50" width="20" height="15" rx="3" fill="white"/>
+          </svg>
+          <div class="rest-badge">Vista Lagoa</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-tipo">Restaurante · Família</div>
+          <div class="rest-name">Vista Barrinha</div>
+          <div class="rest-desc">Com deck sobre a lagoa, serve refeições tradicionais de fusão atlântica. Peixe do dia, sempre. Cooperativa de pesca local.</div>
+          <div class="rest-tags">
+            <span class="tag">Vista Panorâmica</span>
+            <span class="tag">Peixe do Dia</span>
+            <span class="tag">Cooperativa</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rest-card fade-up">
+        <div class="rest-img" style="background: linear-gradient(135deg, #4a1a2a, #8a3a50);">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M40 20 L55 45 L25 45 Z" fill="white"/>
+            <rect x="28" y="45" width="24" height="14" rx="3" fill="white"/>
+          </svg>
+          <div class="rest-badge">Slow Food</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-tipo">Fine Dining · Slow Food</div>
+          <div class="rest-name">O Açude</div>
+          <div class="rest-desc">Gastronomia contemporânea de autor, com 90% dos ingredientes de produtores a menos de 50km. Membro da rede Slow Food.</div>
+          <div class="rest-tags">
+            <span class="tag">Slow Food</span>
+            <span class="tag">Km Zero</span>
+            <span class="tag">Fine Dining</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rest-card fade-up">
+        <div class="rest-img" style="background: linear-gradient(135deg, #2a4a3a, #3a7a5a);">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="40" cy="38" r="18" fill="white"/>
+            <path d="M32 33 Q40 25 48 33 Q48 43 40 48 Q32 43 32 33Z" fill="#2a4a3a"/>
+          </svg>
+          <div class="rest-badge">Novidade 2025</div>
+        </div>
+        <div class="rest-body">
+          <div class="rest-tipo">Snack · Takeaway Verde</div>
+          <div class="rest-name">Pirilampo Verde</div>
+          <div class="rest-desc">Comida rápida mas responsável: hambúrgueres de peixe local, bowls vegetarianos, tudo em embalagens compostáveis.</div>
+          <div class="rest-tags">
+            <span class="tag">Takeaway</span>
+            <span class="tag">Compostável</span>
+            <span class="tag">Acessível</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INICIATIVAS -->
+<section id="iniciativas">
+  <div class="section-inner">
+    <div class="fade-up">
+      <div class="section-tag">O Que Fazemos</div>
+      <h2 class="section-title">Iniciativas para uma <em>Esmoriz viva</em></h2>
+      <p class="section-lead">Projetos concretos que ligam a natureza, a gastronomia e a comunidade num modelo replicável de desenvolvimento sustentável.</p>
+    </div>
+    <div class="iniciativas-grid fade-up">
+      <div class="iniciativa-card">
+        <div class="ini-num">01</div>
+        <div class="ini-title">Circuito Gastronómico da Barrinha</div>
+        <div class="ini-desc">Rota pedonal e de bicicleta que liga os restaurantes parceiros com pontos de observação da lagoa, fauna e flora. Passaporte gastronómico com benefícios nos parceiros.</div>
+      </div>
+      <div class="iniciativa-card">
+        <div class="ini-num">02</div>
+        <div class="ini-title">Horta Comunitária Partilhada</div>
+        <div class="ini-desc">Parcela de terra gerida pela comunidade, cujos produtos abastecem os restaurantes parceiros. Formação em agroecologia e compostagem integrada.</div>
+      </div>
+      <div class="iniciativa-card">
+        <div class="ini-num">03</div>
+        <div class="ini-title">Limpeza e Monitorização da Lagoa</div>
+        <div class="ini-desc">Voluntariado mensal para limpeza das margens, contagem de aves e monitorização da qualidade da água. Dados abertos à comunidade científica e ao público.</div>
+      </div>
+      <div class="iniciativa-card">
+        <div class="ini-num">04</div>
+        <div class="ini-title">Escola Viva: Educação Ambiental</div>
+        <div class="ini-desc">Programa para escolas da região com visitas guiadas à Barrinha, oficinas de cozinha sustentável e ateliers de reciclagem criativa com materiais naturais.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section id="manifesto">
+  <div class="section-inner">
+    <div class="manifesto-inner fade-up">
+      <div class="section-tag">Junte-se a Nós</div>
+      <h2 class="section-title">Cada escolha <em>conta</em></h2>
+      <div class="manifesto-cita">
+        "A Barrinha não é apenas uma lagoa. É a memória coletiva de Esmoriz, o sustento de famílias, o lar de centenas de espécies. Preservá-la é preservar quem somos."
+      </div>
+      <p style="color: var(--cinza); font-size: 1rem; line-height: 1.7; margin-bottom: 1.5rem;">
+        Inscreva-se na nossa newsletter e fique a par das próximas iniciativas, eventos e novidades dos restaurantes parceiros.
+      </p>
+      <div class="newsletter-box">
+        <input type="email" placeholder="O seu email" />
+        <a href="#" class="btn-primary" style="white-space: nowrap;">Subscrever</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Esmoriz <em>Viva</em></div>
+        <div class="footer-tagline">Um projeto de desenvolvimento sustentável que une a natureza da Barrinha com a gastronomia e a comunidade local de Esmoriz.</div>
+      </div>
+      <div class="footer-col">
+        <h4>Navegar</h4>
+        <ul>
+          <li><a href="#barrinha">A Barrinha</a></li>
+          <li><a href="#restaurantes">Restaurantes</a></li>
+          <li><a href="#iniciativas">Iniciativas</a></li>
+          <li><a href="#manifesto">Newsletter</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="#">info@esmorizviva.pt</a></li>
+          <li><a href="#">+351 912 345 678</a></li>
+          <li><a href="#">Esmoriz, Ovar</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Esmoriz Viva · Todos os direitos reservados</span>
+      <span>Feito com ♡ por e para a comunidade de Esmoriz</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
